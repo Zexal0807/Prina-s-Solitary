@@ -50,6 +50,23 @@ module.exports = class Deck {
         this.cards.push(new Card(Seme.CLUB, Value.JACK));
         this.cards.push(new Card(Seme.CLUB, Value.QUEEN));
         this.cards.push(new Card(Seme.CLUB, Value.KING));
+    }
+
+    shaffle() {
+        let index = this.cards.length;
+        let randomIndex;
+
+        while (index != 0) {
+
+            randomIndex = Math.floor(Math.random() * index);
+            index--;
+
+            [
+                this.cards[index], this.cards[randomIndex]
+            ] = [
+                this.cards[randomIndex], this.cards[index]
+            ];
+        }
 
 
     }
