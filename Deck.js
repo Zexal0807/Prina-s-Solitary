@@ -67,7 +67,33 @@ module.exports = class Deck {
                 this.cards[randomIndex], this.cards[index]
             ];
         }
+    }
 
+    print() {
+        this.cards.forEach(card => card.print());
+    }
+
+    check() {
+        let cards = [...this.cards];
+
+        let i = 0;
+        let j = 2;
+
+        while (j < cards.length) {
+
+            let a = cards[i];
+            let b = cards[j];
+
+            if (a.value == b.value || a.seme == b.seme) {
+                cards.splice(i + 1, 1);
+                i = 0;
+                j = 2;
+            } else {
+                i++;
+                j++;
+            }
+        }
+        return cards.length;
 
     }
 
