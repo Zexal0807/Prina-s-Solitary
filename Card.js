@@ -5,7 +5,7 @@ module.exports = class Card {
     }
 
     print() {
-        console.log(this.seme, this.value);
+        return this.seme + this.value;
     }
 
 }

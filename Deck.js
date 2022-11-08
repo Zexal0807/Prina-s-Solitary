@@ -70,7 +70,8 @@ module.exports = class Deck {
     }
 
     print() {
-        this.cards.forEach(card => card.print());
+        let s = this.cards.map(card => card.print()).join(" ");
+        console.log(s);
     }
 
     check() {
@@ -85,7 +86,7 @@ module.exports = class Deck {
             let b = cards[j];
 
             if (a.value == b.value || a.seme == b.seme) {
-                cards.splice(i + 1, 1);
+                cards.splice(i, 1);
                 i = 0;
                 j = 2;
             } else {
