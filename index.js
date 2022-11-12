@@ -5,7 +5,7 @@ let d;
 do {
     d = new Deck();
     d.shaffle();
-    s = d.check();
-} while (s != 2);
+    s = d.perfectCheck();
+} while (s != 1);
 console.log("Sequenza lunga " + s);
 d.print();

@@ -98,4 +98,34 @@ module.exports = class Deck {
 
     }
 
+
+    perfectCheck() {
+        let cards = [...this.cards];
+        let last = cards.pop();
+
+        let i = 0;
+        let j = 2;
+
+        while (j < cards.length) {
+
+            let a = cards[i];
+            let b = cards[j];
+
+            if (a.value == b.value || a.seme == b.seme) {
+                cards.splice(i, 1);
+                i = 0;
+                j = 2;
+            } else {
+                i++;
+                j++;
+            }
+        }
+        if (cards.length == 2) {
+            let a = cards[0];
+            if (a.value == last.value || a.seme == last.seme) {
+                return 1;
+            }
+        }
+        return cards.length;
+    }
 }
