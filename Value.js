@@ -1,4 +1,5 @@
 module.exports = class Value {
+
     static ONE = "1";
     static TWO = "2";
     static THREE = "3";
@@ -9,4 +10,5 @@ module.exports = class Value {
     static JACK = "J";
     static QUEEN = "Q";
     static KING = "K";
+
 }

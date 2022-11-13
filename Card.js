@@ -1,4 +1,5 @@
 module.exports = class Card {
+
     constructor(seme, value) {
         this.seme = seme;
         this.value = value;
