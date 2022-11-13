@@ -98,7 +98,6 @@ module.exports = class Deck {
 
     }
 
-
     perfectCheck() {
         let cards = [...this.cards];
         let last = cards.pop();
@@ -128,4 +127,5 @@ module.exports = class Deck {
         }
         return cards.length;
     }
+
 }
