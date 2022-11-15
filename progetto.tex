@@ -1,5 +1,20 @@
 \documentclass[a4paper]{article}
 
+\usepackage{numprint}
+
+\usepackage{tabstackengine,xcolor,rotating}
+\newcommand\blackcard[2]{%
+    \begingroup\fboxsep=0pt\relax
+    \fbox{\tabbedCenterstack{%
+    \scriptsize$#2$ && \\&\makebox[10pt]{#1}&\\&
+    &\rotatebox[origin=c]{180}{\scriptsize$#2$}}}%
+    \endgroup}
+\newcommand\redcard[2]{%
+    \begingroup\fboxsep=0pt\relax
+    \fbox{\color{red}\tabbedCenterstack{%
+    \scriptsize$#2$ && \\&\makebox[10pt]{#1}&\\&&\rotatebox[origin=c]{180}{\scriptsize$#2$}}}%
+    \endgroup}
+
 \begin{document}
 
 \begin{titlepage}
@@ -16,11 +31,87 @@
 \newpage
 
 \section{Premesse}
-In tutto il documento ci si riferirà a il \emph{mazzo (Deck)}, esso è da intendere come un mazzo di 40 carte, divise in 4 semi; per convenzione durante il documento si userà il mazzo francese, in cui le carte sono l'uno (1), il due (2), il tre (3), il quattro (4), il cinque (5), il sei(6), il sette (7), il fante (J), la regina (Q) e il re (K); mentre i semi sono cuori (), quadri (), fiori () e picche().
+In tutto il documento ci si riferirà a il \emph{mazzo (Deck)}, esso è da intendere come un mazzo di 40 carte, divise in 4 semi. Per convenzione durante il documento si userà il mazzo francese le cui carte sono:
 
-% TODO: Add seme
+\begin{itemize}
+    \item l'asso
+    \item il due
+    \item il tre
+    \item il quattro
+    \item il cinque
+    \item il sei
+    \item il sette
+    \item il fante (J)
+    \item la regina (Q)
+    \item il re (K)
+\end{itemize}
 
-% Immagine delle carte
+\noindent
+Mentre i semi sono:
+
+\begin{itemize}
+    \item i cuori
+    \item i quadri
+    \item i fiori
+    \item i picche
+\end{itemize}
+
+
+\noindent
+Il mazzo è quindi composta dalle carte sottostanti:
+
+\begin{figure}[h]
+    \centering
+    \scalebox{0.6}{
+        \redcard{1}{\heartsuit}
+        \redcard{2}{\heartsuit}
+        \redcard{3}{\heartsuit}
+        \redcard{4}{\heartsuit}
+        \redcard{5}{\heartsuit}
+        \redcard{6}{\heartsuit}
+        \redcard{7}{\heartsuit}
+        \redcard{J}{\heartsuit}
+        \redcard{Q}{\heartsuit}
+        \redcard{K}{\heartsuit}
+    }
+    \scalebox{0.6}{
+        \redcard{1}{\diamondsuit}
+        \redcard{2}{\diamondsuit}
+        \redcard{3}{\diamondsuit}
+        \redcard{4}{\diamondsuit}
+        \redcard{5}{\diamondsuit}
+        \redcard{6}{\diamondsuit}
+        \redcard{7}{\diamondsuit}
+        \redcard{J}{\diamondsuit}
+        \redcard{Q}{\diamondsuit}
+        \redcard{K}{\diamondsuit}
+    }
+    \scalebox{0.6}{
+        \blackcard{1}{\clubsuit}
+        \blackcard{2}{\clubsuit}
+        \blackcard{3}{\clubsuit}
+        \blackcard{4}{\clubsuit}
+        \blackcard{5}{\clubsuit}
+        \blackcard{6}{\clubsuit}
+        \blackcard{7}{\clubsuit}
+        \blackcard{J}{\clubsuit}
+        \blackcard{Q}{\clubsuit}
+        \blackcard{K}{\clubsuit}
+    }
+    \scalebox{0.6}{
+        \blackcard{1}{\spadesuit}
+        \blackcard{2}{\spadesuit}
+        \blackcard{3}{\spadesuit}
+        \blackcard{4}{\spadesuit}
+        \blackcard{5}{\spadesuit}
+        \blackcard{6}{\spadesuit}
+        \blackcard{7}{\spadesuit}
+        \blackcard{J}{\spadesuit}
+        \blackcard{Q}{\spadesuit}
+        \blackcard{K}{\spadesuit}
+    }
+    \caption{Mazzo}\label{fig-mazzo}
+\end{figure}
 
 \newpage
 
@@ -38,6 +129,17 @@ Viene definita \emph{sequenza corretta}, una sequenza, in cui terminate le carte
 
 
 % Esempio 
+
+\begin{figure}
+    \centering
+    \scalebox{0.95}{
+        \blackcard{Q}{\spadesuit}
+        \redcard{10}{\heartsuit}
+        \blackcard{8}{\spadesuit}
+        \redcard{A}{\diamondsuit}
+    }
+    \caption{Diagramma E/R}\label{fig-diagramma-er}
+\end{figure}
 
 
 \subsection{Sequenza perfetta}
