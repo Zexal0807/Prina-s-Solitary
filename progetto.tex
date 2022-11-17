@@ -6,14 +6,19 @@
 \newcommand\blackcard[2]{%
     \begingroup\fboxsep=0pt\relax
     \fbox{\tabbedCenterstack{%
-    \scriptsize$#2$ && \\&\makebox[10pt]{#1}&\\&
-    &\rotatebox[origin=c]{180}{\scriptsize$#2$}}}%
+    \hspace{3pt}\scriptsize$#2$ && \\ &\makebox[10pt]{#1}& \\ &&\rotatebox[origin=c]{180}{\scriptsize$#2$}\hspace{3pt}}}%
     \endgroup}
 \newcommand\redcard[2]{%
     \begingroup\fboxsep=0pt\relax
     \fbox{\color{red}\tabbedCenterstack{%
-    \scriptsize$#2$ && \\&\makebox[10pt]{#1}&\\&&\rotatebox[origin=c]{180}{\scriptsize$#2$}}}%
+    \hspace{3pt}\scriptsize$#2$ && \\ &\makebox[10pt]{#1}& \\ &&\rotatebox[origin=c]{180}{\scriptsize$#2$}\hspace{3pt}}}%
     \endgroup}
+\newcommand\bluecard[2]{%
+    \begingroup\fboxsep=0pt\relax
+    \fbox{\color{blue}\tabbedCenterstack{%
+    \hspace{3pt}\scriptsize$#2$ && \\ &\makebox[10pt]{#1}& \\ &&\rotatebox[origin=c]{180}{\scriptsize$#2$}\hspace{3pt}}}%
+    \endgroup}
+
 
 \begin{document}
 
@@ -55,7 +60,6 @@ Mentre i semi sono:
     \item i fiori
     \item i picche
 \end{itemize}
-
 
 \noindent
 Il mazzo è quindi composta dalle carte sottostanti:
@@ -110,12 +114,10 @@ Il mazzo è quindi composta dalle carte sottostanti:
         \blackcard{Q}{\spadesuit}
         \blackcard{K}{\spadesuit}
     }
-    \caption{Mazzo}\label{fig-mazzo}
+    \caption{Mazzo}
 \end{figure}
 
-
 In tutto il documento ci si riferirà a la \emph{sequenza}, essa rappresenta l'ordine delle carte nel mazzo mescolato.
-
 
 \newpage
 
@@ -125,7 +127,42 @@ Il gioco è molto semplice, dato un mazzo da gioco mischiato, si tengono tutte l
 Nel caso la prima e la terza carta hanno stesso valore o stesso seme, allora la seconda carta viene spostasta sopra la prima (avvicinando la terza).
 Successivamente si scopre un'altra carta di ricomincia a controllare dall'inizio.
 
-% Add image del funzionamento
+\vspace{0.5cm}
+Ecco un esempio del funzionamento
+
+\begin{figure}[h]
+    \centering
+    \scalebox{0.8}{
+        \blackcard{1}{\spadesuit}
+    }
+    \\
+    \vspace{0.5cm}
+    \scalebox{0.8}{
+        \blackcard{1}{\spadesuit}
+        \redcard{K}{\diamondsuit}
+    }
+    \\
+    \vspace{0.5cm}
+    \scalebox{0.8}{
+        \blackcard{1}{\spadesuit}
+        \redcard{K}{\diamondsuit}
+        \blackcard{1}{\clubsuit}
+    }\\
+    \vspace{0.5cm}
+    \scalebox{0.8}{
+        \bluecard{1}{\spadesuit}
+        \redcard{K}{\diamondsuit}
+        \bluecard{1}{\clubsuit}
+    }
+    \\
+    \vspace{0.5cm}
+    \scalebox{0.8}{
+        \redcard{K}{\diamondsuit}
+        \blackcard{1}{\clubsuit}
+    }
+    \caption{Esempio di funzionamento}
+\end{figure}
+
 
 \subsection{Sequenza corretta}
 
