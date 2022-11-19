@@ -1,6 +1,6 @@
 const Deck = require("./Deck");
 
-const MAX_TENT = 1 * 1000 * 1000;
+const MAX_TENT = 1000 * 1000 * 1000;
 let correct = 0;
 let perfect = 0;
 let n_perfect = 0;
@@ -19,6 +19,7 @@ for (let i = 0; i < MAX_TENT; i++) {
 		}
 	}
 	if (d.isNPerfect()) {
+		d.print();
 		n_perfect++;
 	}
 }
