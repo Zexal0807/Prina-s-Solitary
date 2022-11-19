@@ -154,9 +154,7 @@ module.exports = class Deck {
 
 	isCorrect() {
 		let cards = [...this.cards];
-
-		this._check(cards);
-		return cards.length == 2;
+		return this._check(cards) == 2;
 	}
 
 	isPerfect() {
@@ -166,9 +164,7 @@ module.exports = class Deck {
 		this._check(cards);
 		if (cards.length == 2) {
 			let a = cards[0];
-			if (a.value == last.value || a.seme == last.seme) {
-				return true;
-			}
+			return this._sameValueOrSeme(a, last);
 		}
 		return false;
 
@@ -176,8 +172,6 @@ module.exports = class Deck {
 
 	isNPerfect() {
 		let cards = [...this.cards];
-
-		this._check(cards);
-		return cards.length == 40;
+		return this._check(cards) == 40;
 	}
 }
