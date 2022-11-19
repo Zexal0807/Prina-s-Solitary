@@ -1,5 +1,7 @@
 \documentclass[a4paper]{article}
 
+\usepackage{amsmath}
+
 \usepackage{numprint}
 
 \usepackage{tabstackengine,xcolor,rotating}
@@ -347,16 +349,48 @@ Eccone un esempio
 
 \newpage
 
-\section{Statistiche}
+\section{Introduzione}
+Durante le innumerevoli partite giocate da me giocate, non è capito che la sequenza fosse corretta o ben che meno perfetta, e quindi nata in me l'idea si sapere quanto siano rare tali sequenze, ho quindi iniziato ad analizzare il gioco dal punto di vista statistico.
 
+Poichè il mazzo è composto da 40 carte, possiamo calcolare il numero totale di sequenze, esso sarà pari a $40! \simeq 8.1591528 \cdot 10^{47}$; questo numero computazionalmente enorme, non è quindi possibile su un computer verificare tutte le sequenze possibili per avere dati esatti.
+Allo stesso modo anche calcolare quante siano le sequenze corrette, perfette o n-perfect non è semplice, avendo dati esempi di tutte e tre possiamo sicuramente affermare che ne esistano.
 
+\section{Analisi statistica}
+
+Definiamo $P_C$ la probabilità che una sequenza sia corretta, $P_P$ la probabilità che una sequenza sia perfetta e $P_{N-P}$ la probabilità che una sequenza sia n-perfect; queste probabilità sono a noi sconusciute, ma sicuramente $P_C>0$,  $P_P>0$ e $P_{N-P}>0$ avendo dato esempi.
+
+Ci aspettiamo che su 10 sequenze, le sequenze corrette $S_{C}^{10}$ siano:
+\begin{equation*}
+    S_{C}^{10} \simeq 10 \cdot P_C
+\end{equation*}
+
+Possiamo quindi isolare $P_C$
+\begin{equation*}
+    P_C \simeq \frac{S_{C}^{10}}{10}
+\end{equation*}
+
+Ovviamente questa è un'approsimazione, ma aumentando il numero di sequenze otterremo un risultato sempre più vicino a $P_C$, possiamo quindi definire:
+\begin{equation*}
+    P_C =  \lim_{n \to +\infty} {\frac{S_{C}^{n}}{n}}
+\end{equation*}
+
+Allo stesso modo definiamo:
+\begin{equation*}
+    P_P =  \lim_{n \to +\infty} {\frac{S_{P}^{n}}{n}}
+    \qquad
+    \qquad
+    P_{N-P} =  \lim_{n \to +\infty} {\frac{S_{N-P}^{n}}{n}}
+\end{equation*}
+
+Possiamo quindi scrivere un programma per generare quante più sequenze possibili in modo approssimare queste probabilità.
 
 \newpage
+
 
 \section{Implementazione}
 
 
-\newpage
+
 
 \section{Conclusioni}
 
