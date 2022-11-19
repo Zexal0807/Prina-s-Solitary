@@ -21,6 +21,23 @@
     \hspace{3pt}\scriptsize$#2$ && \\ &\makebox[10pt]{#1}& \\ &&\rotatebox[origin=c]{180}{\scriptsize$#2$}\hspace{3pt}}}%
     \endgroup}
 
+\usepackage{listings}
+
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    breaklines=true,
+    numbersep=-10pt,
+    tabsize=2
+}
+\lstset{style=mystyle}
 
 \begin{document}
 
@@ -357,7 +374,7 @@ Allo stesso modo anche calcolare quante siano le sequenze corrette, perfette o n
 
 \section{Analisi statistica}
 
-Definiamo $P_C$ la probabilità che una sequenza sia corretta, $P_P$ la probabilità che una sequenza sia perfetta e $P_{N-P}$ la probabilità che una sequenza sia n-perfect; queste probabilità sono a noi sconusciute, ma sicuramente $P_C>0$,  $P_P>0$ e $P_{N-P}>0$ avendo dato esempi.
+Definiamo $P_C$ la probabilità che una sequenza sia corretta, $P_P$ la probabilità che una sequenza sia perfetta e $P_{N-P}$ la probabilità che una sequenza sia n-perfect; queste probabilità sono a noi sconusciute, ma sicuramente $P_C>0$,  $P_P>0$ e $P_{N-P}>0$ avendo dato un esempio per ognuna.
 
 Ci aspettiamo che su 10 sequenze, le sequenze corrette $S_{C}^{10}$ siano:
 \begin{equation*}
@@ -386,9 +403,125 @@ Possiamo quindi scrivere un programma per generare quante più sequenze possibil
 
 \newpage
 
-
 \section{Implementazione}
+Iniziamo col definire gli enumeratori per i semi e per i valori, in modo da poterli usare con semplicità dopo.
 
+\begin{lstlisting}[language=Java]
+    class Seme {
+        public static HEART = "1";
+        public static DIAMOND = "2";
+        public static FLOWER = "3";
+        public static CLUB = "4";
+    }
+\end{lstlisting}
+
+\begin{lstlisting}[language=Java]
+    class Value {
+        public static ONE = "1";
+        public static TWO = "2";
+        public static THREE = "3";
+        public static FOUR = "4";
+        public static FIVE = "5";
+        public static SIX = "6";
+        public static SEVEN = "7";
+        public static JACK = "J";
+        public static QUEEN = "Q";
+        public static KING = "K";
+    }
+\end{lstlisting}
+
+\vspace{0.5cm}
+\noindent
+Definiamo ora una carta come una classe che memorizza un seme e un valore.
+
+\begin{lstlisting}[language=Java]
+    class Card{
+        private Seme seme;
+        private Value value;
+
+        constructor(seme, value) {
+            this.seme = seme;
+            this.value = value;
+        }
+
+        public Seme getSeme() {
+            return this.seme
+        }
+
+        public Value getValue() {
+            return this.value
+        }
+    }
+\end{lstlisting}
+
+\vspace{0.5cm}
+\noindent
+Definiamo poi il mazzo come un contenitore di 40 carte; definiamogli poi:
+\begin{itemize}
+    \item un metodo $shuffle$ che randomicamente mischia le carte nel mazzo.
+    \item un metodo $sameValueOrSeme$ che confronta due carte, ritornando $true$ se hanno lo stesso valore o lo stesso seme
+    \item un metodo $check$ che data una sequenza di carte le confronta facendo salire quelle con lo stesso valore o seme, ritornando la sequenza ridotta
+    \item un metodo $isCorrect$ che analizza la sequenza è dice se la sequenza ridotta è di 2 carte
+    \item un metodo $isPerfect$ che analizza la sequenza è dice se la sequenza ridotta è di 2 carte (in cui l'ultima è esattamente l'ultima scesa)
+    \item un metodo $isNPerfect$ che analizza la sequenza è dice se la sequenza ridotta è di 40 carte
+\end{itemize}
+
+La classe risultante sarà simile a questa
+\begin{lstlisting}[language=Java]
+    class Deck{
+        private Card cards[40];
+
+        constructor() {
+            this.cards.add(new Card(Seme.HEART, Value.ONE));
+            this.cards.add(new Card(Seme.DIAMOND, Value.ONE));
+            .
+            .
+        }
+
+        public void shaffle() { 
+            cards.randomSort(); 
+        }
+
+        public bool sameValueOrSeme(a, b) {
+            return a.value == b.value || a.seme == b.seme;
+        }
+    
+        public Card[] check(cards) {
+            i = 0;
+            j = 2;
+    
+            while (j < cards.length) {
+                if (sameValueOrSeme(cards[i], cards[j])) {
+                    cards.removeByIndex(i);
+                    i = 0;
+                    j = 2;
+                } else {
+                    i++;
+                    j++;
+                }
+            }
+            return cards;
+        }
+    
+        public bool isCorrect() {
+            return check(cards).length == 2;
+        }
+    
+        public bool isPerfect() {
+            last = cards.pop();
+            cards = check(cards);
+
+            if (cards.length == 2) {
+                return sameValueOrSeme(cards[0], last);
+            }
+            return false;
+        }
+    
+        public bool isNPerfect() {
+            return check(cards).length == 40;
+        }
+    }
+\end{lstlisting}
 
 
 
