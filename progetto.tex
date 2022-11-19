@@ -585,7 +585,7 @@ Possiamo ora lanciare il programma generando \numprint{10}, \numprint{100}, \num
         \numprint{10000}    & 42       & $0.42$     & 6        & $0.6$      & 0         & $0$        \\
         \numprint{100000}   & 456      & $0.4559$   & 141      & $0.141$    & 0         & $0$        \\
         \numprint{1000000}  & 4607     & $0.4607$   & 1431     & $0.1431$   & 1         & $0.0001$   \\
-        \numprint{10000000} & 46245    & $0.46245$  & 13995    & $0.13995$  & 11        & $0.00011$  \\
+        \numprint{10000000} & 46245    & $0.46245$  & 13995    & $0.13995$  & 9         & $0.00009$  \\
         \numprint{10000000} & 462679   & $0.462679$ & 140521   & $0.140521$ & 86        & $0.000086$ \\
         \bottomrule
     \end{tabular}
@@ -632,5 +632,82 @@ e il numero totale di sequenze n-perfect $S_{N-P}$
 \begin{equation*}
     S_{N-P}  = 40! \cdot P_{N-P} \simeq 0.0
 \end{equation*}
+
+\newpage
+
+\section{Dati statistici}
+Possiamo poi modificare leggermente lo script, infatti usando il metodo check, possiamo valutare la lunghezza della sequenza ridotta e ottenere più dati riguardo la distribuzione delle sequenze.
+
+
+\pgfplotsset{width=12cm, height=7cm, compat=1.9}
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+                xlabel=Lunghezza della sequenza,
+                xmin=1,
+                xmax=41,
+                ymin=0,
+                ymax=350,
+                ybar interval=0.5,
+                x tick label style={rotate=90}
+            ]
+            \addplot coordinates {
+                    (0,327)
+                    (1,74)
+                    (2,5)
+                    (3,109)
+                    (4,327)
+                    (5,74)
+                    (6,5)
+                    (7,103)
+                    (8,327)
+                    (9,74)
+                    (10,327)
+                    (11,74)
+                    (12,5)
+                    (13,109)
+                    (14,327)
+                    (15,74)
+                    (16,5)
+                    (17,139)
+                    (18,327)
+                    (19,74)
+                    (20,327)
+                    (21,74)
+                    (22,5)
+                    (23,103)
+                    (24,327)
+                    (25,74)
+                    (26,5)
+                    (27,103)
+                    (28,327)
+                    (29,74)
+                    (30,327)
+                    (31,74)
+                    (32,5)
+                    (33,103)
+                    (34,327)
+                    (35,74)
+                    (36,5)
+                    (37,103)
+                    (38,327)
+                    (39,74)
+                    (40,5)
+                    (41,0)
+                };
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Distribuzione statistica delle sequenze}
+\end{figure}
+
+\pgfplotsset{width=5cm,compat=1.9}
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \pie[text=inside, radius=3]{ 70/Sequen corrette, 30/Sequenze perfette }
+    \end{tikzpicture}
+    \caption{Sequenze perfette rispetto alle sequenze corrette}
+\end{figure}
 
 \end{document}
