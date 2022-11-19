@@ -128,4 +128,56 @@ module.exports = class Deck {
 		return cards.length;
 	}
 
+	_sameValueOrSeme(a, b) {
+		return a.value == b.value || a.seme == b.seme;
+	}
+
+	_check(cards) {
+		let i = 0;
+		let j = 2;
+
+		while (j < cards.length) {
+			let a = cards[i];
+			let b = cards[j];
+
+			if (this._sameValueOrSeme(a, b)) {
+				cards.splice(i, 1);
+				i = 0;
+				j = 2;
+			} else {
+				i++;
+				j++;
+			}
+		}
+		return cards.length;
+	}
+
+	isCorrect() {
+		let cards = [...this.cards];
+
+		this._check(cards);
+		return cards.length == 2;
+	}
+
+	isPerfect() {
+		let cards = [...this.cards];
+		let last = cards.pop();
+
+		this._check(cards);
+		if (cards.length == 2) {
+			let a = cards[0];
+			if (a.value == last.value || a.seme == last.seme) {
+				return true;
+			}
+		}
+		return false;
+
+	}
+
+	isNPerfect() {
+		let cards = [...this.cards];
+
+		this._check(cards);
+		return cards.length == 40;
+	}
 }
