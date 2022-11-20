@@ -8,8 +8,6 @@
 \usepackage{pgfplots}
 \usepackage{pgf-pie} 
 
-\usepackage{showframe}
-
 \usepackage{tabstackengine,xcolor,rotating}
 \newcommand\blackcard[2]{%
     \begingroup\fboxsep=0pt\relax
@@ -570,27 +568,27 @@ Oppure, ben più interessante, possiamo generare diverse sequenze contare quante
 
 \vspace{0.5cm}
 \noindent
-Possiamo ora lanciare il programma generando \numprint{10}, \numprint{100}, \numprint{1000}, \numprint{10000}, \numprint{1000000}, \numprint{10 000 000} e \numprint{100 000 000} sequenze; vediamo il risultato
+Possiamo ora lanciare il programma generando \numprint{10}, \numprint{100}, \numprint{1000}, \numprint{10000}, \numprint{1000000}, \numprint{10 000 000}, \numprint{100 000 000} e \numprint{1 000 000 000} sequenze; vediamo il risultato
 
 \begin{table}[htp]
     \centering
     \begin{tabular}{@{} c c c c c c c @{}}
         \toprule
-        Sequenze            & Sequenze & $P_C$      & Sequenze & $P_P$      & Sequenze  & $P_{NP}$   \\
-        generate            & corrette &            & perfette &            & n-perfect &            \\
+        Sequenze & Sequenze & $P_C$      & Sequenze & $P_P$      & Sequenze  & $P_{NP}$   \\
+        generate & corrette &            & perfette &            & n-perfect &            \\
         \midrule
-        \numprint{10}       & 1        & $0.1$      & 0        & $0$        & 0         & $0$        \\
-        \numprint{100}      & 2        & $2$        & 0        & $0$        & 0         & $0$        \\
-        \numprint{1000}     & 5        & $0.5$      & 1        & $0.1$      & 0         & $0$        \\
-        \numprint{10000}    & 42       & $0.42$     & 6        & $0.6$      & 0         & $0$        \\
-        \numprint{100000}   & 456      & $0.4559$   & 141      & $0.141$    & 0         & $0$        \\
-        \numprint{1000000}  & 4607     & $0.4607$   & 1431     & $0.1431$   & 1         & $0.0001$   \\
-        \numprint{10000000} & 46245    & $0.46245$  & 13995    & $0.13995$  & 9         & $0.00009$  \\
-        \numprint{10000000} & 462679   & $0.462679$ & 140521   & $0.140521$ & 86        & $0.000086$ \\
+        10       & 1        & $0.1$      & 0        & $0$        & 0         & $0$        \\
+        $10^2$   & 2        & $2$        & 0        & $0$        & 0         & $0$        \\
+        $10^3$   & 5        & $0.5$      & 1        & $0.1$      & 0         & $0$        \\
+        $10^4$   & 42       & $0.42$     & 6        & $0.6$      & 0         & $0$        \\
+        $10^5$   & 456      & $0.4559$   & 141      & $0.141$    & 0         & $0$        \\
+        $10^6$   & 4607     & $0.4607$   & 1431     & $0.1431$   & 1         & $0.0001$   \\
+        $10^7$   & 46245    & $0.46245$  & 13995    & $0.13995$  & 9         & $0.00009$  \\
+        $10^8$   & 462679   & $0.462679$ & 140521   & $0.140521$ & 86        & $0.000086$ \\
+        $10^9$   & 4640873  & $0.464087$ & 1406504  & $0.140650$ & 929       & $0.000092$ \\
         \bottomrule
     \end{tabular}
-    \caption{Risultati delle approssimazioni}
-    \label{figure-tabella-risultato}
+    \caption{Risultati delle sequenze, le probabilità sono approssimate a 6 cifre decimali}
 \end{table}
 
 \newpage
@@ -600,13 +598,13 @@ Possiamo ora lanciare il programma generando \numprint{10}, \numprint{100}, \num
 Come era prevedibile la generazione di più sequenze ha portato a un'approsimazione sempre migliore, possiamo quindi presumere che:
 
 \begin{equation*}
-    P_C \simeq 0.0
+    P_C \simeq 0.46
     \qquad
     \qquad
-    P_P \simeq 0.0
+    P_P \simeq 0.14
     \qquad
     \qquad
-    P_{N-P} \simeq 0.0
+    P_{N-P} \simeq 0.000092
 \end{equation*}
 
 \vspace{0.5cm}
@@ -614,7 +612,7 @@ Come era prevedibile la generazione di più sequenze ha portato a un'approsimazi
 Inoltre possiamo anche stimare il numero totale di sequenze corrette $S_C$
 
 \begin{equation*}
-    S_C  = 40! \cdot P_C \simeq 0.0
+    S_C  = 40! \cdot P_C \simeq 4.75 \cdot 10^{47}
 \end{equation*}
 
 \vspace{0.5cm}
@@ -622,7 +620,7 @@ Inoltre possiamo anche stimare il numero totale di sequenze corrette $S_C$
 il numero totale di sequenze perfette $S_P$
 
 \begin{equation*}
-    S_P  = 40! \cdot P_P \simeq 0.0
+    S_P  = 40! \cdot P_P \simeq 1.14 \cdot 10^{47}
 \end{equation*}
 
 \vspace{0.5cm}
@@ -630,82 +628,154 @@ il numero totale di sequenze perfette $S_P$
 e il numero totale di sequenze n-perfect $S_{N-P}$
 
 \begin{equation*}
-    S_{N-P}  = 40! \cdot P_{N-P} \simeq 0.0
+    S_{N-P}  = 40! \cdot P_{N-P} \simeq 7.5 \cdot 10^{43}
 \end{equation*}
+
+\vspace{0.5cm}
+\noindent
+Inoltre come da definizione, ogni sequenza perfetta è una sequenza corretta, ma non vale il contrario, esistono quindi delle sequenze corrette che non sono perfette, definiamo quindi
 
 \newpage
 
 \section{Dati statistici}
 Possiamo poi modificare leggermente lo script, infatti usando il metodo check, possiamo valutare la lunghezza della sequenza ridotta e ottenere più dati riguardo la distribuzione delle sequenze.
 
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{@{} c c c @{}}
+        \toprule
+        Lungezza sequenze & Sequenze trovate             & Percentuale         \\
+        \midrule
+        2                 & \numprint{4640873}           & \numprint{0.464087} \\
+        3                 & \numprint{17902642         } & \numprint{1.790264} \\
+        4                 & \numprint{28309368         } & \numprint{2.830936} \\
+        5                 & \numprint{34732813         } & \numprint{3.473281} \\
+        6                 & \numprint{38441358         } & \numprint{3.844135} \\
+        7                 & \numprint{40810279         } & \numprint{4.081027} \\
+        8                 & \numprint{42713517         } & \numprint{4.271351} \\
+        9                 & \numprint{44331576         } & \numprint{4.433157} \\
+        10                & \numprint{45707571         } & \numprint{4.570757} \\
+        11                & \numprint{46840134         } & \numprint{4.684013} \\
+        12                & \numprint{47716945         } & \numprint{4.771694} \\
+        13                & \numprint{48287643         } & \numprint{4.828764} \\
+        14                & \numprint{48525463         } & \numprint{4.852546} \\
+        15                & \numprint{48372274         } & \numprint{4.837227} \\
+        16                & \numprint{47807739         } & \numprint{4.780773} \\
+        17                & \numprint{46819503         } & \numprint{4.681950} \\
+        18                & \numprint{45354697         } & \numprint{4.535469} \\
+        19                & \numprint{43463802         } & \numprint{4.346380} \\
+        20                & \numprint{41088830         } & \numprint{4.108883} \\
+        21                & \numprint{38323020         } & \numprint{3.832302} \\
+        22                & \numprint{35154387         } & \numprint{3.515438} \\
+        23                & \numprint{31703653         } & \numprint{3.170365} \\
+        24                & \numprint{28002162         } & \numprint{2.800216} \\
+        25                & \numprint{24206455         } & \numprint{2.420645} \\
+        26                & \numprint{20393795         } & \numprint{2.039379} \\
+        27                & \numprint{16702882         } & \numprint{1.670288} \\
+        28                & \numprint{13243948         } & \numprint{1.324394} \\
+        29                & \numprint{10118663         } & \numprint{1.011866} \\
+        30                & \numprint{7407866          } & \numprint{0.740786} \\
+        31                & \numprint{5166561          } & \numprint{0.516656} \\
+        32                & \numprint{3398381          } & \numprint{0.339838} \\
+        33                & \numprint{2090579          } & \numprint{0.209057} \\
+        34                & \numprint{1185536          } & \numprint{0.118553} \\
+        35                & \numprint{609272           } & \numprint{0.060927} \\
+        36                & \numprint{277209           } & \numprint{0.027720} \\
+        37                & \numprint{107201           } & \numprint{0.010720} \\
+        38                & \numprint{33189            } & \numprint{0.003318} \\
+        39                & \numprint{7285             } & \numprint{0.000728} \\
+        40                & \numprint{929              } & \numprint{0.000092} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Risultati delle sequenze, le probabilità sono approssimate a 6 cifre decimali}
+\end{table}
 
-\pgfplotsset{width=12cm, height=7cm, compat=1.9}
+\newpage
+
+\noindent
+Possiamo poi graficare i dati ottenuti in modo da poterli interpretare meglio:
+
+\pgfplotsset{width=12cm, height=6cm, compat=1.9}
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
+                ylabel=Percentuale,
                 xlabel=Lunghezza della sequenza,
-                xmin=1,
+                xmin=2,
                 xmax=41,
-                ymin=0,
-                ymax=350,
+                ymin=1,
+                ymax=5,
                 ybar interval=0.5,
-                x tick label style={rotate=90}
+                x tick label style={rotate=90},
             ]
             \addplot coordinates {
-                    (0,327)
-                    (1,74)
-                    (2,5)
-                    (3,109)
-                    (4,327)
-                    (5,74)
-                    (6,5)
-                    (7,103)
-                    (8,327)
-                    (9,74)
-                    (10,327)
-                    (11,74)
-                    (12,5)
-                    (13,109)
-                    (14,327)
-                    (15,74)
-                    (16,5)
-                    (17,139)
-                    (18,327)
-                    (19,74)
-                    (20,327)
-                    (21,74)
-                    (22,5)
-                    (23,103)
-                    (24,327)
-                    (25,74)
-                    (26,5)
-                    (27,103)
-                    (28,327)
-                    (29,74)
-                    (30,327)
-                    (31,74)
-                    (32,5)
-                    (33,103)
-                    (34,327)
-                    (35,74)
-                    (36,5)
-                    (37,103)
-                    (38,327)
-                    (39,74)
-                    (40,5)
-                    (41,0)
+                    (2,  0.464087)
+                    (3,  1.790264)
+                    (4,  2.830936)
+                    (5,  3.473281)
+                    (6,  3.844135)
+                    (7,  4.081027)
+                    (8,  4.271351)
+                    (9,  4.433157)
+                    (10, 4.570757)
+                    (11, 4.684013)
+                    (12, 4.771694)
+                    (13, 4.828764)
+                    (14, 4.852546)
+                    (15, 4.837227)
+                    (16, 4.780773)
+                    (17, 4.681950)
+                    (18, 4.535469)
+                    (19, 4.346380)
+                    (20, 4.108883)
+                    (21, 3.832302)
+                    (22, 3.515438)
+                    (23, 3.170365)
+                    (24, 2.800216)
+                    (25, 2.420645)
+                    (26, 2.039379)
+                    (27, 1.670288)
+                    (28, 1.324394)
+                    (29, 1.011866)
+                    (30, 0.740786)
+                    (31, 0.516656)
+                    (32, 0.339838)
+                    (33, 0.209057)
+                    (34, 0.118553)
+                    (35, 0.060927)
+                    (36, 0.027720)
+                    (37, 0.010720)
+                    (38, 0.003318)
+                    (39, 0.000728)
+                    (40, 0.000092)
+                    (41, 0)
                 };
         \end{axis}
     \end{tikzpicture}
     \caption{Distribuzione statistica delle sequenze}
 \end{figure}
 
+\noindent
+Possiamo anche analizzare il numero di sequenze corrette e perfette per capire come siano relazionate:
+
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{@{} c c c c c @{}}
+        \toprule
+        Sequenze              & Lungezza corrette  & Sequenze perfette  & Percentuale          \\
+        \midrule
+        \numprint{1000000000} & \numprint{4640873} & \numprint{1406504} & \numprint{30.306884} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Sequenze perfette rispetto alle sequenze corrette, le probabilità sono approssimate a 6 cifre decimali}
+\end{table}
+
 \pgfplotsset{width=5cm,compat=1.9}
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}
-        \pie[text=inside, radius=3]{ 70/Sequen corrette, 30/Sequenze perfette }
+        \pie[radius=2]{ 69.693/Sequenze corrette non perfette, 30.306/Sequenze perfette }
     \end{tikzpicture}
     \caption{Sequenze perfette rispetto alle sequenze corrette}
 \end{figure}
